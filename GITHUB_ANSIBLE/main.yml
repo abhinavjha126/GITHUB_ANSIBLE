@@ -1,0 +1,22 @@
+---
+- name: Download Github File
+  hosts: localhost
+  vars_files:
+      - secrets.yml
+  tasks:
+      - name: Download from the GitRepo
+        git:
+            repo: 'https://{{gituser}}:{{gitpass}}@github.com/{{gitpath}}'
+            dest: '{{ workdir }}/{{version}}'
+
+      - name: Docker build
+        docker_image:
+            name: '041012/{{repositoryname}}:{{version}}'
+            build:
+               path: '{{ workdir }}/{{version}}/'
+            source: build
+            state: present
+            tag: '{{version}}'
+
+      - name: Build an image and push it to a private repo
+        command: docker push 041012/{{repositoryname}}:{{version}}

@@ -1,0 +1,7 @@
+[WHEN SECRET FILE IS VAULTED]
+ansible-vault encrypt secrets.yml
+ansible-vault decrypt secrets.yml
+ansible-playbook main.yml --ask-vault-pass
+
+[WHEN SECRET FILE IS NOT VAULTED]
+ansible-playbook main.yml
