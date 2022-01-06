@@ -5,3 +5,6 @@ ansible-playbook main.yml --ask-vault-pass
 
 [WHEN SECRET FILE IS NOT VAULTED]
 ansible-playbook main.yml
+
+[CHANGES REQUIRED]
+just change "041012" in main.yml and also change secret.yml file
